@@ -2,20 +2,19 @@ pipeline {
     agent any
 
 	environment {	
-		DOCKERHUB_CREDENTIALS=credentials('dockerloginid')
+		DOCKERHUB_CREDENTIALS=credentials('Docker_Hub')
 	} 
  
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "MAVEN"
+        maven "M2_HOME"
     }
     
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                //git branch: 'master', credentialsId: 'GIT_HUB_CREDENTIALS', url: //'https://github.com/LoksaiETA/Java-mvn-app2.git'
-				git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+                //git branch: 'master', credentialsId: 'GIT_HUB_CREDENTIALS', url: //'https://github.com/suvo7886/Docker_Project_StarAgile.git'
+				git 'https://github.com/suvo7886/Docker_Project_StarAgile.git'
                 // Run Maven on a Unix agent.
                 //sh './gradle wrapper'
                 //sh './gradlew build'
@@ -29,9 +28,9 @@ pipeline {
         stage("Docker build"){
             steps {
 				sh 'docker version'
-				sh 'docker build -t loksai-docker-demo .'
+				sh 'docker build -t cicd-project1 .'
 				sh 'docker image list'
-				sh 'docker tag loksai-docker-demo loksaieta/loksai-docker-demo:loksai-docker-demo'
+				sh 'docker tag cicd-project1 suvo7886/cicd-project1:v1.0'
             }
         }
 		stage('Login') {
@@ -44,7 +43,7 @@ pipeline {
 		stage('Push') {
 
 			steps {
-				sh 'docker push loksaieta/loksai-docker-demo:loksai-docker-demo'
+				sh 'docker push suvo7886/cicd-project1:v1.0'
 			}
 		}
 
