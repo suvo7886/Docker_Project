@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   loksai-springboot-container:
     image: loksai-spring-boot-docker-compose:1
