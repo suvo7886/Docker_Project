@@ -1,28 +1,27 @@
 pipeline {
     
     agent {
-        label 'build_node'
+        label 'slave'
     }
 
 	environment {	
-		DOCKERHUB_CREDENTIALS=credentials('dockerloginid')
+		DOCKERHUB_CREDENTIALS=credentials('Docker_Hub')
 	} 
  
     tools 
     {
-        maven 'Maven-3.8.6'
+        maven 'M2_HOME'
     }
     
     stages {
         stage('SCM Checkout') {
             steps {
-				git 'https://github.com/suvo7886/Docker_Project_StarAgile.git'
+		git 'https://github.com/suvo7886/Docker_Project_StarAgile.git'
             }
 		}
 		
         stage('Maven Build') {
             steps {
-                // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 		}
@@ -30,9 +29,9 @@ pipeline {
         stage("Docker build"){
             steps {
 				sh 'docker version'
-				sh 'docker build -t loksaidevops .'
+				sh 'docker build -t cicd-project1 .'
 				sh 'docker image list'
-				sh 'docker tag loksaidevops loksaieta/loksaidevops:v1.0'
+				sh 'docker tag cicd-project1 suvo7886/cicd-project1:v1.0'
             }
         }
 		stage('Login2DockerHub') {
@@ -45,7 +44,7 @@ pipeline {
 		stage('Push2DockerHub') {
 
 			steps {
-				sh 'docker push loksaieta/loksaidevops:v1.0'
+				sh 'docker push suvo7886/cicd-project1:v1.0'
 			}
 		}
 
