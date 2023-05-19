@@ -1,2 +1,2 @@
 FROM tomcat:latest
-COPY ./target/loksaieta.war /usr/local/tomcat/webapps
+COPY ./target/subhajit.war /usr/local/tomcat/webapps
