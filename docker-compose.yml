@@ -1,11 +1,11 @@
 version: '3'
 services:
-  loksai-springboot-container:
-    image: loksai-spring-boot-docker-compose:1
+  subha-springboot-container:
+    image: subha-spring-boot-docker-compose:1
     build:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /data/loksai-springboot-container
+      - /data/subha-springboot-container
     ports:
       - "8080-8100:8080"
