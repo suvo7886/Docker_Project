@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('SCM Checkout') {
             steps {
-                git 'https://github.com/suvo7886/Docker_Project_StarAgile.git'
+                git branch: 'master', url: 'https://github.com/suvo7886/Docker_Project_StarAgile.git'
             }
 		}
         stage('Maven Build') {
