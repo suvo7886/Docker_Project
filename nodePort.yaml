@@ -1,13 +1,12 @@
-#Service Type nodePort
 apiVersion: v1
 kind: Service
 metadata:
-  name: loksai-eta-np-service
+  name: suvo7886-np-service
   labels:
-    app: loksai-eta-app
+    app: suvo7886-app
 spec:
   selector:
-    app: loksai-eta-app
+    app: suvo7886-app
 
   type: NodePort
   ports:
